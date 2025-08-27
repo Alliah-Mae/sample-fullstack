@@ -9,12 +9,8 @@ app.use(express.json());
 app.get("/", (req, res) => res.send("Hello from the backend!"));
 
 app.get("/users", async (req, res) => {
-  try {
-    const result = await pool.query("SELECT * FROM users");
-    res.json(result.rows);
-  } catch (err) {
-    res.status(500).json({ error: err.message });
-  }
+  const result = await pool.query("SELECT * FROM users");
+  res.json(result.rows);
 });
 
 app.get("/posts", async (req, res) => {
